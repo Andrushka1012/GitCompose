@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -20,9 +21,17 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
+            buildConfigField "String", "API_URL", "\"https://api.github.com/\""
+            buildConfigField "String", "CLIENT_ID", "\"5720488d90cd333cdb6c\""
+            buildConfigField "String", "CLIENT_SECRET", "\"156d96058524a4b068eb76a8ec32f4de2f57eecb\""
+        }
+        release { // Release not signed
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_URL", "\"https://api.github.com/\""
+            buildConfigField "String", "CLIENT_ID", "\"5720488d90cd333cdb6c\""
+            buildConfigField "String", "CLIENT_SECRET", "\"156d96058524a4b068eb76a8ec32f4de2f57eecb\""
         }
     }
     compileOptions {
@@ -38,7 +47,7 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.5.21'
+        kotlinCompilerVersion '1.5.31'
     }
     packagingOptions {
         resources {
@@ -62,4 +71,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-beta01'
+    implementation 'io.coil-kt:coil-compose:1.4.0'
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+
+    implementation "androidx.paging:paging-compose:1.0.0-alpha14"
+
+
 }
