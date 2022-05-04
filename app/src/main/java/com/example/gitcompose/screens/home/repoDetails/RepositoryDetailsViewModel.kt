@@ -1,4 +1,4 @@
-package com.example.gitcompose.screens.repoDetails
+package com.example.gitcompose.screens.home.repoDetails
 
 import androidx.lifecycle.ViewModel
 import com.example.gitcompose.features.github.GitHubRepository

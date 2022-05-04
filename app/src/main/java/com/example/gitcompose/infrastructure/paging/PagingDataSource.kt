@@ -1,5 +1,6 @@
 package com.example.gitcompose.infrastructure.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.gitcompose.models.Page
@@ -30,6 +31,7 @@ class PagingDataSource<T : Any> @AssistedInject constructor(
                 nextKey = result.nextPage,
             )
         } catch (tr: Throwable) {
+            Log.e("qwe", tr.toString(), tr)
             LoadResult.Error(throwable = tr)
         }
     }
